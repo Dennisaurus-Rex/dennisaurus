@@ -1,8 +1,9 @@
 #!/bin/bash
 
 flutter clean web
-flutter build web --base-href /galvend.github.io/
+flutter build web 
 cd build/web
+echo "dennisaurus.dev" > CNAME
 # check if .git exists and run git init if not
 if [ ! -d ".git" ]; then
   git init

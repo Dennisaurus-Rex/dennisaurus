@@ -3,9 +3,9 @@
     "short_name": "dennisaurus_dev",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
+    "background_color": "#FFFFFF",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "I smash keyboards until the computer complies/compiles",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

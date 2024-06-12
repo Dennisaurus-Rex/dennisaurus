@@ -18,7 +18,7 @@ class _DebugMenuWidgetState extends State<DebugMenuWidget> {
       ),
       body: CustomScrollView(
         slivers: [
-          const ThemePickerWidget(),
+          ThemePickerWidget((theme) {}),
           Theme.of(context).colorScheme.colorPallete,
         ],
       ),

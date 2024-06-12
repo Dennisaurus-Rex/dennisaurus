@@ -1,141 +1,170 @@
+import 'dart:async';
+
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dennisaurus_dev/core/constants.dart';
 import 'package:dennisaurus_dev/core/extensions/build_context_convenience.dart';
-import 'package:dennisaurus_dev/ui/info_page.dart';
-import 'package:dennisaurus_dev/ui/slide_out_theme_picker.dart';
-import 'package:dennisaurus_dev/ui/theme_picker_widget.dart';
+import 'package:dennisaurus_dev/core/images.dart';
+import 'package:dennisaurus_dev/models/jobsmodel.dart';
+import 'package:dennisaurus_dev/networking/resume_repository.dart';
+import 'package:dennisaurus_dev/ui/components/job_widget.dart';
+import 'package:dennisaurus_dev/ui/image_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fluvvm/fluvvm.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-enum LayoutSize {
-  small,
-  medium,
-  large,
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SinglePageWidget extends NotifiedWidget<SinglePageViewmodel> {
+  SinglePageWidget() : super(viewmodel: SinglePageViewmodel());
+  @override
+  bool get keepAlive => true;
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  LayoutSize _layoutSize = LayoutSize.large;
-
-  Widget get _resolvedLayout {
-    if (_layoutSize == LayoutSize.small) {
-      return const _SmallLayout();
-    } else if (_layoutSize == LayoutSize.medium) {
-      return const _MediumLayout();
-    } else {
-      return const _LargeLayout();
-    }
+  Widget buildOnNotified(BuildContext context, SinglePageViewmodel viewmodel) {
+    return switch (viewmodel.state) {
+      SinglePageState.loading => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      SinglePageState.content => _resolvedBuilder(context),
+      SinglePageState.error => const Center(
+          child: Text('Error'),
+        ),
+    };
   }
 
-  PreferredSizeWidget? get _appBar {
-    switch (_layoutSize) {
-      case LayoutSize.large:
-        return null;
-      case LayoutSize.medium:
-      case LayoutSize.small:
-        return AppBar(
-          title: const Text('dennisaurus.dev'),
-          actions: [
-            IconButton(
-              icon: const Icon(FontAwesomeIcons.brush),
-              onPressed: () {
-                showModalBottomSheet(
-                  clipBehavior: Clip.hardEdge,
-                  context: context,
-                  builder: (context) => const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: ThemePickerWidget(),
-                  ),
-                );
-              },
+  Widget _resolvedBuilder(BuildContext context) => switch (kIsMobileWeb) {
+        true => ListView.builder(
+            itemCount: viewmodel._content.length,
+            itemBuilder: (context, index) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: viewmodel.widgetAtIndex(index),
             ),
-          ],
-        );
-    }
-  }
-
-  void _setLayoutSize(Size windowSize) {
-    if (windowSize.width < 650) {
-      _layoutSize = LayoutSize.small;
-    } else if (windowSize.width < 1170 || windowSize.height < 740) {
-      _layoutSize = LayoutSize.medium;
-    } else {
-      _layoutSize = LayoutSize.large;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _setLayoutSize(context.mediaQuery.size);
-
-    return Scaffold(
-      appBar: _appBar,
-      body: _resolvedLayout,
-    );
-  }
-}
-
-class _SmallLayout extends StatelessWidget {
-  const _SmallLayout();
-
-  @override
-  Widget build(BuildContext context) {
-    return const InfoWidget(
-      displaySmall: true,
-    );
-  }
-}
-
-class _MediumLayout extends StatelessWidget {
-  const _MediumLayout();
-
-  @override
-  Widget build(BuildContext context) {
-    return const InfoWidget();
-  }
-}
-
-class _LargeLayout extends StatelessWidget {
-  const _LargeLayout();
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SizedBox.fromSize(
-          size: context.mediaQuery.size,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Expanded(
-                child: InfoWidget(),
-              ),
-              RotatedBox(
-                quarterTurns: 3,
-                child: Column(
-                  children: [
-                    Text(
-                      'Pick a theme, would ya?',
-                      style: context.theme.textTheme.displayLarge,
-                    ),
-                    const FaIcon(FontAwesomeIcons.chevronDown)
-                  ],
-                ),
-              ),
-              SizedBox.fromSize(
-                size: Size(116, context.mediaQuery.size.height),
-              )
-            ],
           ),
-        ),
-        const SlideOutThemePicker(
-          margin: 100,
-        ),
-      ],
-    );
+        false => CarouselSlider.builder(
+            options: CarouselOptions(
+              height: MediaQuery.of(context).size.height,
+              viewportFraction: 0.65,
+              enlargeCenterPage: true,
+              enableInfiniteScroll: false,
+              pageSnapping: false,
+              autoPlay: true,
+              initialPage: 0,
+              scrollDirection: Axis.vertical,
+              enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+            ),
+            itemCount: viewmodel._content.length,
+            itemBuilder: (context, index, pageIndex) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: viewmodel.widgetAtIndex(index),
+            ),
+          ),
+      };
+}
+
+class SinglePageViewmodel extends Viewmodel<SinglePageState, SinglePageIntent> {
+  SinglePageViewmodel({
+    this.resumeRepository = const ResumeRepository(),
+  });
+
+  Set<Object> _content = {};
+
+  @override
+  void onBound() {
+    _getJobs();
   }
+
+  final ResumeRepository resumeRepository;
+
+  @override
+  void raiseIntent(SinglePageIntent intent, {Object? data}) {
+    // _getJobs();
+  }
+
+  Widget widgetAtIndex(int index) {
+    final item = _content.elementAt(index);
+    if (item is JobsModel) {
+      return JobWidget(
+        item,
+        gradient: index.isOdd ? JobWidgetGradient.card : JobWidgetGradient.text,
+      );
+    } else if (item is ImageCollectionModel) {
+      return ImageCollectionWidget.fromModel(item);
+    } else {
+      throw Exception('Unknown item type');
+    }
+  }
+
+  Future<void> _getJobs() async {
+    setState(SinglePageState.loading);
+    try {
+      final responseModel = await resumeRepository.getJobs();
+      _content.addAll(responseModel.jobs);
+      _setInfo();
+      setState(SinglePageState.content);
+    } catch (e) {
+      setState(SinglePageState.error);
+    }
+  }
+
+  void _setInfo() {
+    final imageCollections = {
+      ImageCollectionModel(
+        "Languages I prefer:",
+        [
+          ImageKey.dart,
+          ImageKey.swift,
+          ImageKey.kotlin,
+          ImageKey.typescript,
+        ],
+        100,
+        [
+          context.theme.colorScheme.primaryContainer,
+          context.theme.colorScheme.secondaryContainer,
+        ],
+      ),
+      ImageCollectionModel(
+        'Platforms I know:',
+        [
+          FontAwesomeIcons.android,
+          FontAwesomeIcons.apple,
+          ImageKey.flutter,
+          ImageKey.gcp,
+          ImageKey.firebase,
+        ],
+        100,
+        [
+          context.theme.colorScheme.secondaryContainer,
+          context.theme.colorScheme.tertiaryContainer,
+        ],
+      ),
+      ImageCollectionModel(
+        'Tools I use:',
+        [
+          ImageKey.vsCode,
+          ImageKey.xcode,
+          ImageKey.androidStudio,
+          FontAwesomeIcons.github,
+          FontAwesomeIcons.gitlab,
+          FontAwesomeIcons.slack,
+          FontAwesomeIcons.jira,
+          FontAwesomeIcons.trello,
+        ],
+        100,
+        [
+          context.theme.colorScheme.tertiaryContainer,
+          context.theme.colorScheme.primaryContainer,
+        ],
+      ),
+    };
+
+    _content.addAll(imageCollections);
+  }
+}
+
+enum SinglePageState with FluvvmState {
+  loading,
+  content,
+  error,
+}
+
+enum SinglePageIntent with FluvvmIntent {
+  fetchContent,
 }

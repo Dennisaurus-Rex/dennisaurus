@@ -1,0 +1,110 @@
+{
+  "jobs": [
+    {
+      "title": "Senior iOS & Android Engineer - Consultant",
+      "company": "Strafe",
+      "location": "Remote -> Stockholm, Sweden",
+      "from": "2023-02",
+      "tasks": [
+        "Bring two old code bases up to date",
+        "Feature development",
+        "Maintenance",
+        "CI/CD Setup for both Android and iOS"
+      ]
+    },
+    {
+      "title": "Senior Flutter Engineer - Consultant",
+      "company": "OhCleo",
+      "location": "Remote -> Stockholm, Sweden",
+      "from": "2023-01",
+      "tasks": [
+        "Helped them to get their code base on the right track. They had some very severe performance issues. Mapped out an app architecture and started the work while coaching their Junior dev on how to move forward."
+      ]
+    },
+    {
+      "title": "Senior iOS Engineer - Consultant",
+      "company": "Hemnet",
+      "location": "Remote -> Stockholm, Sweden",
+      "from": "2022-08",
+      "to": "2023-01",
+      "tasks": [
+        "Refactoring objective-c to Swift",
+        "Refactoring the UI from UIKit/Story boards to SwiftUI",
+        "Maintenance and bug fixing", 
+        "Development of new features",
+        "Coached and mentored junior developers"
+      ]
+    },
+    {
+      "title": "Senior iOS Engineer - Consultant",
+      "company": "Spiideo",
+      "location": "Remote -> Malmoe, Sweden",
+      "from": "2022-01",
+      "to": "2022-08",
+      "tasks": [
+        "Refactoring the UI from UIKit to SwiftUI",
+        "Moved dependencies from Pods to Swift Package Manager",
+        "Setup CI/CD with Mac Minis and Gitlab CI Maintenance and bug fixing",
+        "Integration between camera hardware, router hardware and the iOS app"
+      ]
+    },
+    {
+      "title": "Senior iOS & Android Engineer - Consultant",
+      "company": "Collector Bank",
+      "location": "Remote -> Gothenburg, Sweden",
+      "from": "2021-09",
+      "to": "2022-01",
+      "tasks": [
+        "Further development/Maintenance of iOS & Android app",
+        "Rewrote the app as a flutter prototype Made an integration between the app, Slack, Google sheets & customer service via Google Cloud Platform",
+        "CI/CD setup",
+        "Google Optimize setup on the web app so it can run A/B tests"
+      ]
+    },
+    {
+      "title": "iOS Engineer & Interim Lead iOS Engineer",
+      "company": "IKEA",
+      "location": "Helsingborg, Sweden",
+      "from": "2020-01",
+      "to": "2021-09",
+      "tasks": [
+        "Maintenance & Bug fixing",
+        "Wrote the implementation that enables the user to scan and pay goods in the stores with the app", 
+        "Manage dependencies between the teams within IKEA IT",
+        "Set up CI/CD with Github actions"
+      ]
+    },
+    {
+      "title": "Lead iOS & Android Engineer",
+      "company": "Playtech BGT Sports",
+      "location": "Malmoe, Sweden",
+      "from": "2018-09",
+      "to": "2020-01",
+      "tasks": [
+        "Maintenance & BugFixing in Ladbrokes iOS & Android app",
+        "Developed a white label betting app",
+        "Developed a 3D football/soccer penalty shootout game"
+      ]
+    },
+    {
+      "title": "iOS Engineer",
+      "company": "Swedbank",
+      "location": "Malmoe, Sweden",
+      "from": "2018-06",
+      "to": "2018-09",
+      "tasks": [
+        "Objective-C heavy iOS feature development"
+      ]
+    },
+    {
+      "title": "iOS & Android Engineerr",
+      "company": "Wellbefy",
+      "location": "Helsingborg, Sweden",
+      "from": "2018-01",
+      "to": "2018-06",
+      "tasks": [
+        "Prototyping iOS and Android apps"
+      ]
+    }
+  ]
+}

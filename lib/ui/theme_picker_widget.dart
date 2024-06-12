@@ -1,60 +1,41 @@
-import 'package:dennisaurus_dev/core/extensions/build_context_convenience.dart';
-import 'package:dennisaurus_dev/logic/theme_coordinator.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dennisaurus_dev/models/theme_key.dart';
 import 'package:dennisaurus_dev/models/theme_model.dart';
 import 'package:flutter/material.dart';
 
 class ThemePickerWidget extends StatelessWidget {
-  const ThemePickerWidget({super.key});
+  const ThemePickerWidget(this.onThemeChanged, {super.key});
+  final void Function(ThemeModel theme) onThemeChanged;
 
   List<ThemeModel> get _allThemes =>
       ThemeKey.values.map((e) => ThemeModel.fromKey(e)).toList();
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: _allThemes.length,
-      itemBuilder: (context, index) {
-        final theme = _allThemes[index];
-        return GestureDetector(
-          onTap: () async {
-            await ThemeCoordinator.setTheme(theme);
-          },
-          child: SizedBox(
-            height: 200,
-            child: theme.previewWidget(context),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class ThemeWidget extends StatelessWidget {
-  const ThemeWidget({super.key, required this.theme});
-  final ThemeModel theme;
-
-  Widget _previewFromSize(Size size, BuildContext context) {
-    if (size.height < 340) {
-      return theme.smallPreview(context, padding: EdgeInsets.zero);
-    } else if (size.height < 860) {
-      return theme.smallPreview(context);
-    } else if (size.width < 610) {
-      return theme.mediumPreview(context);
-    } else {
-      return theme.previewWidget(context);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final size = context.mediaQuery.size;
-    return GestureDetector(
-      child: _previewFromSize(size, context),
-      onTap: () async {
-        await ThemeCoordinator.setTheme(theme);
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Theme Picker"),
+      ),
+      body: CarouselSlider.builder(
+        options: CarouselOptions(
+          height: MediaQuery.of(context).size.height * 0.8,
+          viewportFraction: 0.5,
+          enlargeCenterPage: true,
+        ),
+        itemCount: _allThemes.length,
+        itemBuilder: (context, index, pageIndex) {
+          final theme = _allThemes[index];
+          return GestureDetector(
+            onTap: () {
+              onThemeChanged(theme);
+            },
+            child: SizedBox(
+              height: 200,
+              child: theme.previewWidget(context),
+            ),
+          );
+        },
+      ),
     );
   }
 }

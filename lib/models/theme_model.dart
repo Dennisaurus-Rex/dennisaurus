@@ -1,6 +1,5 @@
 import 'package:dennisaurus_dev/models/theme_key.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ThemeModel {
   const ThemeModel._(
@@ -99,6 +98,6 @@ class ThemeModel {
         useMaterial3: true,
         colorSchemeSeed: seed,
         brightness: brightness,
-        fontFamily: GoogleFonts.mPlus1Code().fontFamily,
+        fontFamily: 'MPLUS1Code',
       );
 }

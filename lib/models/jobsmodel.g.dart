@@ -6,7 +6,8 @@ part of 'jobsmodel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_JobsModel _$$_JobsModelFromJson(Map<String, dynamic> json) => _$_JobsModel(
+_$JobsModelImpl _$$JobsModelImplFromJson(Map<String, dynamic> json) =>
+    _$JobsModelImpl(
       title: json['title'] as String,
       company: json['company'] as String,
       location: json['location'] as String,
@@ -15,7 +16,7 @@ _$_JobsModel _$$_JobsModelFromJson(Map<String, dynamic> json) => _$_JobsModel(
       tasks: (json['tasks'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$_JobsModelToJson(_$_JobsModel instance) =>
+Map<String, dynamic> _$$JobsModelImplToJson(_$JobsModelImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'company': instance.company,

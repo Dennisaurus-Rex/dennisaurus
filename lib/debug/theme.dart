@@ -41,7 +41,7 @@ extension AllColors on ColorScheme {
           'surface',
         ),
         _ColorPair(
-          surfaceVariant,
+          surfaceContainerHighest,
           onSurfaceVariant,
           'surfaceVariant',
         ),
@@ -51,8 +51,8 @@ extension AllColors on ColorScheme {
           'inverseSurface',
         ),
         _ColorPair(
-          background,
-          onBackground,
+          surface,
+          onSurface,
           'background',
         ),
         _ColorPair(

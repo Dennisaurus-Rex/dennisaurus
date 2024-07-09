@@ -1,3 +1,4 @@
+import 'package:dennisaurus_dev/logic/theme_coordinator.dart';
 import 'package:dennisaurus_dev/models/theme_key.dart';
 import 'package:flutter/material.dart';
 
@@ -21,17 +22,17 @@ class ThemeModel {
           seed: Colors.teal,
           darkTheme: true,
         );
-      case ThemeKey.orange:
-        return ThemeModel._(
-          key,
-          seed: Colors.orange,
-        );
-      case ThemeKey.darthOrange:
-        return ThemeModel._(
-          key,
-          seed: Colors.orange,
-          darkTheme: true,
-        );
+      // case ThemeKey.orange:
+      //   return ThemeModel._(
+      //     key,
+      //     seed: Colors.limeAccent,
+      //   );
+      // case ThemeKey.darthOrange:
+      //   return ThemeModel._(
+      //     key,
+      //     seed: Colors.limeAccent,
+      //     darkTheme: true,
+      //   );
       case ThemeKey.pink:
         return ThemeModel._(
           key,
@@ -88,6 +89,29 @@ class ThemeModel {
           darkTheme: true,
         );
     }
+  }
+
+  factory ThemeModel.next() {
+    int nextIndex = ThemeKey.values.indexOf(ThemeCoordinator.currentKey) + 1;
+    if (nextIndex >= ThemeKey.values.length) {
+      nextIndex = 0;
+    }
+
+    final nextKey = ThemeKey.values[nextIndex];
+
+    return ThemeModel.fromKey(nextKey);
+  }
+
+  factory ThemeModel.previous() {
+    int previousIndex =
+        ThemeKey.values.indexOf(ThemeCoordinator.currentKey) - 1;
+    if (previousIndex < 0) {
+      previousIndex = ThemeKey.values.length - 1;
+    }
+
+    final previousKey = ThemeKey.values[previousIndex];
+
+    return ThemeModel.fromKey(previousKey);
   }
 
   final Color seed;

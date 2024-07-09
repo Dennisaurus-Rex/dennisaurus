@@ -18,10 +18,11 @@ class JobWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return switch (gradient) {
-      JobWidgetGradient.card => _GradientCard(job: job),
-      JobWidgetGradient.text => _GradientText(job: job),
-    };
+    return _GradientCard(job: job);
+    // return switch (gradient) {
+    //   JobWidgetGradient.card => _GradientCard(job: job),
+    //   JobWidgetGradient.text => _GradientText(job: job),
+    // };
   }
 }
 
@@ -35,8 +36,8 @@ class _GradientCard extends StatelessWidget {
     return GradientCard(
       gradient: LinearGradient(
         colors: [
-          context.theme.colorScheme.primary,
-          context.theme.colorScheme.tertiary,
+          context.theme.colorScheme.primary.withOpacity(0.5),
+          context.theme.colorScheme.tertiary.withOpacity(0.5),
         ],
       ),
       child: Padding(

@@ -65,8 +65,8 @@ extension Preview on ThemeModel {
             Row(
               children: [
                 _previewBox(
-                  theme.colorScheme.background,
-                  theme.colorScheme.onBackground,
+                  theme.colorScheme.surface,
+                  theme.colorScheme.onSurface,
                   'Background',
                 ),
               ],
@@ -131,8 +131,8 @@ extension Preview on ThemeModel {
                 Row(
                   children: [
                     _previewBox(
-                      theme.colorScheme.background,
-                      theme.colorScheme.onBackground,
+                      theme.colorScheme.surface,
+                      theme.colorScheme.onSurface,
                       'Background',
                     ),
                   ],

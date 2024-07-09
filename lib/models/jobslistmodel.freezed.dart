@@ -12,7 +12,7 @@ part of 'jobslistmodel.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 JobsListModel _$JobsListModelFromJson(Map<String, dynamic> json) {
   return _JobsListModel.fromJson(json);
@@ -62,22 +62,22 @@ class _$JobsListModelCopyWithImpl<$Res, $Val extends JobsListModel>
 }
 
 /// @nodoc
-abstract class _$$_JobsListModelCopyWith<$Res>
+abstract class _$$JobsListModelImplCopyWith<$Res>
     implements $JobsListModelCopyWith<$Res> {
-  factory _$$_JobsListModelCopyWith(
-          _$_JobsListModel value, $Res Function(_$_JobsListModel) then) =
-      __$$_JobsListModelCopyWithImpl<$Res>;
+  factory _$$JobsListModelImplCopyWith(
+          _$JobsListModelImpl value, $Res Function(_$JobsListModelImpl) then) =
+      __$$JobsListModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<JobsModel> jobs});
 }
 
 /// @nodoc
-class __$$_JobsListModelCopyWithImpl<$Res>
-    extends _$JobsListModelCopyWithImpl<$Res, _$_JobsListModel>
-    implements _$$_JobsListModelCopyWith<$Res> {
-  __$$_JobsListModelCopyWithImpl(
-      _$_JobsListModel _value, $Res Function(_$_JobsListModel) _then)
+class __$$JobsListModelImplCopyWithImpl<$Res>
+    extends _$JobsListModelCopyWithImpl<$Res, _$JobsListModelImpl>
+    implements _$$JobsListModelImplCopyWith<$Res> {
+  __$$JobsListModelImplCopyWithImpl(
+      _$JobsListModelImpl _value, $Res Function(_$JobsListModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_JobsListModelCopyWithImpl<$Res>
   $Res call({
     Object? jobs = null,
   }) {
-    return _then(_$_JobsListModel(
+    return _then(_$JobsListModelImpl(
       jobs: null == jobs
           ? _value._jobs
           : jobs // ignore: cast_nullable_to_non_nullable
@@ -96,11 +96,11 @@ class __$$_JobsListModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_JobsListModel implements _JobsListModel {
-  _$_JobsListModel({required final List<JobsModel> jobs}) : _jobs = jobs;
+class _$JobsListModelImpl implements _JobsListModel {
+  _$JobsListModelImpl({required final List<JobsModel> jobs}) : _jobs = jobs;
 
-  factory _$_JobsListModel.fromJson(Map<String, dynamic> json) =>
-      _$$_JobsListModelFromJson(json);
+  factory _$JobsListModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$JobsListModelImplFromJson(json);
 
   final List<JobsModel> _jobs;
   @override
@@ -116,10 +116,10 @@ class _$_JobsListModel implements _JobsListModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_JobsListModel &&
+            other is _$JobsListModelImpl &&
             const DeepCollectionEquality().equals(other._jobs, _jobs));
   }
 
@@ -131,12 +131,12 @@ class _$_JobsListModel implements _JobsListModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_JobsListModelCopyWith<_$_JobsListModel> get copyWith =>
-      __$$_JobsListModelCopyWithImpl<_$_JobsListModel>(this, _$identity);
+  _$$JobsListModelImplCopyWith<_$JobsListModelImpl> get copyWith =>
+      __$$JobsListModelImplCopyWithImpl<_$JobsListModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_JobsListModelToJson(
+    return _$$JobsListModelImplToJson(
       this,
     );
   }
@@ -144,15 +144,15 @@ class _$_JobsListModel implements _JobsListModel {
 
 abstract class _JobsListModel implements JobsListModel {
   factory _JobsListModel({required final List<JobsModel> jobs}) =
-      _$_JobsListModel;
+      _$JobsListModelImpl;
 
   factory _JobsListModel.fromJson(Map<String, dynamic> json) =
-      _$_JobsListModel.fromJson;
+      _$JobsListModelImpl.fromJson;
 
   @override
   List<JobsModel> get jobs;
   @override
   @JsonKey(ignore: true)
-  _$$_JobsListModelCopyWith<_$_JobsListModel> get copyWith =>
+  _$$JobsListModelImplCopyWith<_$JobsListModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

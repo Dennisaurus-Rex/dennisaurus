@@ -20,6 +20,7 @@ class GradientCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: elevation,
       shape: shape,
+      color: Colors.transparent,
       child: DecoratedBox(
         decoration: BoxDecoration(
           gradient: gradient,

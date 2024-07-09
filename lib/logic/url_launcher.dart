@@ -1,14 +1,15 @@
-import 'package:url_launcher/url_launcher.dart' as launcher;
+import 'package:url_launcher/url_launcher.dart';
 
 final class URLLauncher {
   const URLLauncher._();
 
-  static Future<void> launchURL(URLLauncherIntent intent) async {
+  static Future<bool> launchURL(URLLauncherIntent intent) async {
     final url = _SafeHttps.safeHttps(intent.link);
-    if (await launcher.canLaunchUrl(url)) {
-      await launcher.launchUrl(url);
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+      return true;
     } else {
-      throw 'Could not launch $url';
+      return false;
     }
   }
 }
@@ -16,7 +17,7 @@ final class URLLauncher {
 enum URLLauncherIntent {
   linkedIn._("https://www.linkedin.com/in/dennisaurus-rex/"),
   github._("https://github.com/Dennisaurus-Rex"),
-  email._("mailto:dennis@dennisaurus.dev?subject=Inquiry from Dennisaurus.dev");
+  email._("mailto:dennis@dennisaurus.dev?subject=Inquiry from dennisaurus.dev");
 
   const URLLauncherIntent._(this.link);
 

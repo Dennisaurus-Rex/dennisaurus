@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:dennisaurus_dev/core/extensions/build_context_convenience.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -40,7 +41,7 @@ final class _ExpandableFabState extends State<ExpandableFab>
       vsync: this,
     );
     _expandAnimation = CurvedAnimation(
-      curve: Curves.fastOutSlowIn,
+      curve: Curves.bounceIn,
       reverseCurve: Curves.easeOutQuad,
       parent: _controller,
     );
@@ -66,28 +67,53 @@ final class _ExpandableFabState extends State<ExpandableFab>
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox.expand(
-      child: Stack(
-        alignment: Alignment.bottomRight,
-        clipBehavior: Clip.none,
-        children: [
-          if (_open) _buildDimmedBackground(),
-          _buildTapToCloseFab(),
-          ..._buildExpandingActionButtons(),
-          _buildTapToOpenFab(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDimmedBackground() {
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-      child: SizedBox.expand(
-        child: GestureDetector(
-          onTap: _toggle,
+    return Stack(
+      alignment: Alignment.bottomRight,
+      clipBehavior: Clip.none,
+      children: [
+        AnimatedBuilder(
+          animation: _controller,
+          builder: (ctx, w) => Transform.translate(
+            offset: Offset(
+              lerpDouble(400, 200, _expandAnimation.value) ?? 400,
+              lerpDouble(400, 200, _expandAnimation.value) ?? 400,
+            ),
+            child: Container(
+              height: 400,
+              width: 400,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: context.theme.colorScheme.primaryContainer,
+                  width: 4,
+                ),
+                // borderRadius: BorderRadius.circular(200),
+                gradient: LinearGradient(
+                  colors: [
+                    context.theme.colorScheme.primary,
+                    context.theme.colorScheme.tertiaryContainer,
+                  ],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                      color: context.theme.colorScheme.shadow.withOpacity(0.5),
+                      blurRadius: 2,
+                      spreadRadius: 2,
+                      offset: Offset(-1, -1)),
+                ],
+              ),
+            ),
+          ),
         ),
-      ),
+        // ClipOval(
+        //   child: BackdropFilter(
+        //       filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+        //       child: SizedBox.square(dimension: 200)),
+        // ),
+        _buildTapToCloseFab(),
+        ..._buildExpandingActionButtons(),
+        _buildTapToOpenFab(),
+      ],
     );
   }
 
@@ -154,14 +180,19 @@ final class _ExpandableFabState extends State<ExpandableFab>
               null => FloatingActionButton(
                   onPressed: _toggle,
                   child: const FaIcon(
-                    FontAwesomeIcons.elementor,
+                    FontAwesomeIcons.userAstronaut,
                   ),
                 ),
               _ => FloatingActionButton.extended(
                   onPressed: _toggle,
-                  label: Text(widget.title!),
+                  label: Text(
+                    widget.title!,
+                    style: context.theme.textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   icon: const FaIcon(
-                    FontAwesomeIcons.elementor,
+                    FontAwesomeIcons.userAstronaut,
                   ),
                 ),
             }),

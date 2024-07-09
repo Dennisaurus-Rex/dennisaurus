@@ -1,8 +1,8 @@
 enum ThemeKey {
   teal('teal'),
   darthTeal('darth teal'),
-  orange('orange'),
-  darthOrange('darth orange'),
+  // orange('orange'),
+  // darthOrange('darth orange'),
   pink('pink'),
   darthPink('darth pink'),
   purple('purple'),

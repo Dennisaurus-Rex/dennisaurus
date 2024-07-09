@@ -1,13 +1,10 @@
-import 'package:dennisaurus_dev/logic/theme_coordinator.dart';
 import 'package:dennisaurus_dev/logic/url_launcher.dart';
 import 'package:dennisaurus_dev/models/jobsmodel.dart';
-import 'package:dennisaurus_dev/models/theme_model.dart';
 import 'package:dennisaurus_dev/networking/resume_repository.dart';
 import 'package:dennisaurus_dev/ui/components/expandable_fab.dart';
 import 'package:dennisaurus_dev/ui/front_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 final class MainApp extends StatefulWidget {
   @override

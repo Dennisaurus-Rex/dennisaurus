@@ -113,6 +113,7 @@ class _GradientCard extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _GradientText extends StatelessWidget {
   const _GradientText({required this.job});
 

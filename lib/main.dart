@@ -46,6 +46,7 @@ class MyHome extends StatelessWidget {
 
 Widget? _devWidget = MainApp();
 
+// ignore: unused_element
 Widget? get _devScaffold {
   final devWidget = _devWidget;
   if (devWidget == null) return null;

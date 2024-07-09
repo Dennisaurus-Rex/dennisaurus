@@ -23,7 +23,7 @@ class FrontPage extends StatelessWidget {
         WaveWidget(
           config: CustomConfig(
             colors: [
-              context.theme.colorScheme.primary,
+              context.theme.colorScheme.primaryContainer,
               context.theme.colorScheme.secondary,
               context.theme.colorScheme.tertiary,
             ],

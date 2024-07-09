@@ -11,3 +11,7 @@ clean-build: clean build
 web:
 	flutter run -d chrome
 .PHONY: web
+
+deploy:
+	sh deploy.sh
+.PHONY: deploy

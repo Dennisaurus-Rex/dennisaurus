@@ -8,7 +8,7 @@ bool get isDarkMode =>
     SchedulerBinding.instance.platformDispatcher.platformBrightness ==
     Brightness.dark;
 // ThemeData _currentTheme = ThemeModel.fromKey(_currentKey).theme;
-ThemeKey _currentKey = ThemeKey.teal;
+ThemeKey _currentKey = ThemeKey.random();
 
 final class ThemeCoordinator {
   static void attachListener(VoidCallback listener) {
@@ -18,6 +18,12 @@ final class ThemeCoordinator {
   static void setTheme(ThemeModel model) {
     _currentKey = model.key;
     _updateThemeListener?.call();
+  }
+
+  static void setNewRandom() {
+    final newKey = ThemeKey.randomExcept(_currentKey);
+    final newTheme = ThemeModel.fromKey(newKey);
+    ThemeCoordinator.setTheme(newTheme);
   }
 
   static ThemeData get currentTheme => ThemeModel.fromKey(_currentKey).theme;

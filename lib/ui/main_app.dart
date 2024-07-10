@@ -44,28 +44,40 @@ class _MainAppState extends State<MainApp> {
       floatingActionButton: ExpandableFab(
         title: 'connect',
         children: [
-          IconButton.filled(
-            onPressed: () {
-              _launchUrl(URLLauncherIntent.linkedIn);
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.linkedin,
+          SizedBox.square(
+            dimension: 44,
+            child: IconButton.filled(
+              // iconSize: 44,
+              onPressed: () {
+                _launchUrl(URLLauncherIntent.linkedIn);
+              },
+              icon: FaIcon(
+                FontAwesomeIcons.linkedin,
+              ),
             ),
           ),
-          IconButton.filled(
-            onPressed: () async {
-              _launchUrl(URLLauncherIntent.github);
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.github,
+          SizedBox.square(
+            dimension: 44,
+            child: IconButton.filled(
+              // iconSize: 44,
+              onPressed: () async {
+                _launchUrl(URLLauncherIntent.github);
+              },
+              icon: FaIcon(
+                FontAwesomeIcons.github,
+              ),
             ),
           ),
-          IconButton.filled(
-            onPressed: () async {
-              _launchUrl(URLLauncherIntent.email);
-            },
-            icon: FaIcon(
-              FontAwesomeIcons.at,
+          SizedBox.square(
+            dimension: 44,
+            child: IconButton.filled(
+              // iconSize: 44,
+              onPressed: () async {
+                _launchUrl(URLLauncherIntent.email);
+              },
+              icon: FaIcon(
+                FontAwesomeIcons.at,
+              ),
             ),
           ),
         ],

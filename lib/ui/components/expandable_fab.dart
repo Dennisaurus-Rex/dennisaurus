@@ -2,6 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:dennisaurus_dev/core/extensions/build_context_convenience.dart';
+import 'package:dennisaurus_dev/logic/theme_coordinator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -58,9 +59,15 @@ final class _ExpandableFabState extends State<ExpandableFab>
       _open = !_open;
       widget.onOpenChanged?.call(_open);
       if (_open) {
-        _controller.forward();
+        ThemeCoordinator.setNewRandom();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _controller.forward();
+        });
       } else {
-        _controller.reverse();
+        ThemeCoordinator.setNewRandom();
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _controller.reverse();
+        });
       }
     });
   }
@@ -71,6 +78,12 @@ final class _ExpandableFabState extends State<ExpandableFab>
       alignment: Alignment.bottomRight,
       clipBehavior: Clip.none,
       children: [
+        SizedBox.expand(
+          child: GestureDetector(
+            onTap: _toggle,
+            behavior: HitTestBehavior.translucent,
+          ),
+        ),
         AnimatedBuilder(
           animation: _controller,
           builder: (ctx, w) => Transform.translate(

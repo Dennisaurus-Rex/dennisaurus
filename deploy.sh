@@ -39,7 +39,7 @@ sed -i '' "s/$VERSION_NUMBER/$NEW_VERSION_NUMBER/" $PUBSPEC
 echo "Version updated to $NEW_VERSION_NUMBER"
 
 git add . 
-git commit -m "Version updated to $NEW_VERSION_NUMBER"
+git commit -am "Version updated to $NEW_VERSION_NUMBER"
 git tag "v$NEW_VERSION_NUMBER" -m "Version updated to $NEW_VERSION_NUMBER"
 git push
 git push --tags

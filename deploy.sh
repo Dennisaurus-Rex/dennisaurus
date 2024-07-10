@@ -1,5 +1,29 @@
 #!/bin/bash
-# increment version in pubspec.yaml
+
+# Make sure there are no local changes
+if ! git diff-index --quiet HEAD --; then
+  echo "There are local changes. "
+  exit 1
+fi
+
+# Make sure there are no local commits
+LOCAL=$(git rev-parse @)
+REMOTE=$(git rev-parse @{u})
+BASE=$(git merge-base @ @{u})
+
+if [ $LOCAL = $REMOTE ]; then
+    echo "Everything is up-to-date"
+elif [ $LOCAL = $BASE ]; then
+    echo "You need to pull, there are changes on the remote."
+    exit 1
+elif [ $REMOTE = $BASE ]; then
+    echo "You have unpushed commits."
+    exit 1
+else
+    echo "Your branch has diverged from the remote."
+    exit 1
+fi
+
 PUBSPEC="pubspec.yaml"
 VERSION_LINE=$(grep 'version:' $PUBSPEC)
 VERSION_NUMBER=$(echo $VERSION_LINE | sed 's/version: //')

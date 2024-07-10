@@ -40,7 +40,7 @@ echo "Version updated to $NEW_VERSION_NUMBER"
 
 git add . 
 git commit -am "Version updated to $NEW_VERSION_NUMBER"
-git tag "v$NEW_VERSION_NUMBER" -m "Version updated to $NEW_VERSION_NUMBER"
+git tag -s "v$NEW_VERSION_NUMBER" -m "Version updated to $NEW_VERSION_NUMBER"
 git push
 git push --tags
 

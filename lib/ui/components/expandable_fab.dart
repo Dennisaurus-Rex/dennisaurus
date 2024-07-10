@@ -72,18 +72,25 @@ final class _ExpandableFabState extends State<ExpandableFab>
     });
   }
 
+  void _closeIfNeeded() {
+    if (_open) {
+      _toggle();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomRight,
       clipBehavior: Clip.none,
       children: [
-        SizedBox.expand(
-          child: GestureDetector(
-            onTap: _toggle,
-            behavior: HitTestBehavior.translucent,
+        if (_open)
+          SizedBox.expand(
+            child: GestureDetector(
+              onTap: _closeIfNeeded,
+              behavior: HitTestBehavior.translucent,
+            ),
           ),
-        ),
         AnimatedBuilder(
           animation: _controller,
           builder: (ctx, w) => Transform.translate(

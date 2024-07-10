@@ -1,4 +1,30 @@
 #!/bin/bash
+# increment version in pubspec.yaml
+PUBSPEC="pubspec.yaml"
+VERSION_LINE=$(grep 'version:' $PUBSPEC)
+VERSION_NUMBER=$(echo $VERSION_LINE | sed 's/version: //')
+BASE_VERSION=$(echo $VERSION_NUMBER | cut -d'+' -f1)
+
+echo "Current version: $VERSION_NUMBER"
+echo "insert new version:"
+read NEW_VERSION_NUMBER
+
+# Increment the build number
+NEW_BUILD_NUMBER=$(date "+%Y%m%d%H%M")
+
+# Construct the new version number
+NEW_VERSION_NUMBER="$NEW_VERSION_NUMBER+$NEW_BUILD_NUMBER"
+
+# Replace the old version number with the new one in pubspec.yaml
+sed -i '' "s/$NEW_VERSION_NUMBER/" $PUBSPEC
+
+echo "Version updated to $NEW_VERSION_NUMBER"
+
+git add . 
+git commit -m "Version updated to $NEW_VERSION_NUMBER"
+git tag "v$NEW_VERSION_NUMBER" -m "Version updated to $NEW_VERSION_NUMBER"
+git push
+git push --tags
 
 flutter clean web
 flutter build web 

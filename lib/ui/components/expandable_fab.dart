@@ -98,29 +98,33 @@ final class _ExpandableFabState extends State<ExpandableFab>
               lerpDouble(400, 200, _expandAnimation.value) ?? 400,
               lerpDouble(400, 200, _expandAnimation.value) ?? 400,
             ),
-            child: Container(
-              height: 400,
-              width: 400,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: context.theme.colorScheme.primaryContainer,
-                  width: 4,
-                ),
-                // borderRadius: BorderRadius.circular(200),
-                gradient: LinearGradient(
-                  colors: [
-                    context.theme.colorScheme.primary,
-                    context.theme.colorScheme.tertiaryContainer,
+            child: Opacity(
+              opacity: _expandAnimation.value,
+              child: Container(
+                height: 400,
+                width: 400,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: context.theme.colorScheme.primaryContainer,
+                    width: 4,
+                  ),
+                  // borderRadius: BorderRadius.circular(200),
+                  gradient: LinearGradient(
+                    colors: [
+                      context.theme.colorScheme.primary,
+                      context.theme.colorScheme.tertiaryContainer,
+                    ],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                        color:
+                            context.theme.colorScheme.shadow.withOpacity(0.5),
+                        blurRadius: 2,
+                        spreadRadius: 2,
+                        offset: Offset(-1, -1)),
                   ],
                 ),
-                boxShadow: [
-                  BoxShadow(
-                      color: context.theme.colorScheme.shadow.withOpacity(0.5),
-                      blurRadius: 2,
-                      spreadRadius: 2,
-                      offset: Offset(-1, -1)),
-                ],
               ),
             ),
           ),

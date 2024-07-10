@@ -40,7 +40,17 @@ echo "Version updated to $NEW_VERSION_NUMBER"
 
 git add . 
 git commit -am "Version updated to $NEW_VERSION_NUMBER"
-git tag -s "v$NEW_VERSION_NUMBER" -m "Version updated to $NEW_VERSION_NUMBER"
+NEW_TAG="v$NEW_VERSION_NUMBER"
+git tag -s $NEW_TAG -m "Version updated to $NEW_VERSION_NUMBER"
+
+# verify that the tag is signed if not reset all and exit
+if ! git tag -v "$NEW_TAG"; then
+  git tag -d "$NEW_TAG"
+  git restore .
+  echo "Tag is not signed"
+  exit 1
+fi
+
 git push
 git push --tags
 

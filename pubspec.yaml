@@ -1,7 +1,7 @@
 name: dennisaurus_dev
 description: 'I smash keyboards until the computer complies/compiles'
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 3.0.0+202507061628
+version: 3.0.1+202507061642
 
 environment:
   sdk: ^3.0.0

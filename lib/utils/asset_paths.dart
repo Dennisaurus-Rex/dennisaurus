@@ -13,6 +13,7 @@ abstract final class AssetPaths {
 final class _$Images {
   const _$Images._();
   final String dennisaurus = 'assets/images/Dennisaurus.png';
+  final String logoNoText = 'assets/images/logo_no_text.png';
 }
 
 final class _$Icons {

@@ -1,5 +1,5 @@
 import 'package:dennisaurus_dev/logic/theme_coordinator.dart';
-import 'package:dennisaurus_dev/ui/main_app.dart';
+import 'package:dennisaurus_dev/ui/main_app_deux.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -10,6 +10,8 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -40,11 +42,11 @@ class MyHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainApp();
+    return MainAppDeux();
   }
 }
 
-Widget? _devWidget = MainApp();
+Widget? _devWidget;
 
 // ignore: unused_element
 Widget? get _devScaffold {

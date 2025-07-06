@@ -4,7 +4,7 @@ part 'jobsmodel.freezed.dart';
 part 'jobsmodel.g.dart';
 
 @freezed
-class JobsModel with _$JobsModel {
+abstract class JobsModel with _$JobsModel {
   factory JobsModel({
     required String title,
     required String company,

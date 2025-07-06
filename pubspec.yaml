@@ -1,5 +1,5 @@
 name: dennisaurus_dev
-description: "I smash keyboards until the computer complies/compiles"
+description: 'I smash keyboards until the computer complies/compiles'
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 2.0.1+202407101442
 
@@ -16,7 +16,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   # cupertino_icons: ^1.0.2
@@ -25,17 +24,18 @@ dependencies:
   provider: ^6.0.5
   flutter_svg: ^2.0.5
   font_awesome_flutter: ^10.4.0
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^3.1.0
   json_annotation: ^4.8.1
-  animate_do: ^3.0.2
-  carousel_slider: ^4.2.1
+  animate_do: ^4.2.0
+  carousel_slider: ^5.1.1
   url_launcher: ^6.1.11
   auto_size_text: ^3.0.0
   google_nav_bar: ^5.0.6
   wave: ^0.2.2
+  mesh_gradient: ^1.3.8
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.13.0"
+  flutter_launcher_icons: ^0.14.4
   flutter_test:
     sdk: flutter
 
@@ -44,24 +44,22 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
   build_runner: ^2.4.4
-  freezed: ^2.3.3
+  freezed: ^3.1.0
   json_serializable: ^6.6.2
   asset_code_generator:
     path: asset_code_generator
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 flutter_icons:
-  web: 
+  web:
     generate: true
     image_path: logo/dennisaurus.png
-    background_color: "#FFFFFF"
+    background_color: '#FFFFFF'
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -72,10 +70,9 @@ flutter:
     - assets/icons/
     - assets/images/
 
-  fonts: 
+  fonts:
     - family: MPLUS1Code
-      fonts: 
+      fonts:
         - asset: fonts/MPLUS1Code-VariableFont_wght.ttf
-
-# fonts: 
+# fonts:
 #   - fonts/MPLUS1Code-VariableFont_wght.ttf

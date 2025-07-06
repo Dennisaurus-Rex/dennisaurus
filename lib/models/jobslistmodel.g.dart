@@ -6,14 +6,14 @@ part of 'jobslistmodel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$JobsListModelImpl _$$JobsListModelImplFromJson(Map<String, dynamic> json) =>
-    _$JobsListModelImpl(
+_JobsListModel _$JobsListModelFromJson(Map<String, dynamic> json) =>
+    _JobsListModel(
       jobs: (json['jobs'] as List<dynamic>)
           .map((e) => JobsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$JobsListModelImplToJson(_$JobsListModelImpl instance) =>
+Map<String, dynamic> _$JobsListModelToJson(_JobsListModel instance) =>
     <String, dynamic>{
       'jobs': instance.jobs,
     };

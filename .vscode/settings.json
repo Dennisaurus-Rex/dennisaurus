@@ -1,3 +1,17 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.22.2"
+  "dart.flutterSdkPath": ".fvm/versions/3.32.5",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  }
 }

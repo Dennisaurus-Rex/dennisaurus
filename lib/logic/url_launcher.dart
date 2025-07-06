@@ -15,9 +15,9 @@ final class URLLauncher {
 }
 
 enum URLLauncherIntent {
-  linkedIn._("https://www.linkedin.com/in/dennisaurus-rex/"),
-  github._("https://github.com/Dennisaurus-Rex"),
-  email._("mailto:dennis@dennisaurus.dev?subject=Inquiry from dennisaurus.dev");
+  linkedIn._('https://www.linkedin.com/in/dennisaurus-rex/'),
+  github._('https://github.com/Dennisaurus-Rex'),
+  email._('mailto:dennis@dennisaurus.dev?subject=Inquiry from dennisaurus.dev');
 
   const URLLauncherIntent._(this.link);
 
@@ -26,7 +26,7 @@ enum URLLauncherIntent {
 
 extension _SafeHttps on Uri {
   static Uri safeHttps(String link) {
-    link.replaceAll("https://", "");
+    link.replaceAll('https://', '');
     final uri = Uri.parse(link);
     return uri;
   }

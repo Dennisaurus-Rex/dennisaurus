@@ -5,7 +5,7 @@ part 'jobslistmodel.freezed.dart';
 part 'jobslistmodel.g.dart';
 
 @freezed
-class JobsListModel with _$JobsListModel {
+abstract class JobsListModel with _$JobsListModel {
   factory JobsListModel({
     required List<JobsModel> jobs,
   }) = _JobsListModel;

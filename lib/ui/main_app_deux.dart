@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dennisaurus_dev/logic/url_launcher.dart';
 import 'package:dennisaurus_dev/utils/asset_paths.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 
@@ -10,7 +11,17 @@ class MainAppDeux extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+      ),
+    );
+
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
       floatingActionButton: Row(
         spacing: 12,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -36,7 +47,7 @@ class MainAppDeux extends StatelessWidget {
         ],
       ),
       body: Stack(
-        alignment: Alignment.bottomCenter,
+        // alignment: Alignment.bottomCenter,
         fit: StackFit.expand,
         children: [
           AnimatedMeshGradient(
